@@ -1,8 +1,6 @@
 from autobahn.twisted.wamp import ApplicationSession, ApplicationRunner
 from twisted.internet.defer import inlineCallbacks
 
-from things.dictionary import Event, Thing
-
 
 class Brainie(ApplicationSession):
 
@@ -10,12 +8,15 @@ class Brainie(ApplicationSession):
     def onJoin(self, details):
         print('WAMP WAMP! connected')
 
-        def omg(msg):
-            print('Yow! sensory input is working - received {0}'.format(msg))
+        # CHAT REPLY
+        url = 'com.theb0ardside.onchat'
 
+        def chatreply(msg):
+            print('Yow! sensory input is working - received {0}'.format(msg))
+            return 'hola\n'
         try:
-            yield self.subscribe(omg, 'com.theb0ardside.onchat')
-            print('Subscribed to topic \'chat\'')
+            yield self.register(chatreply, url)
+            print('"Reply" function registered as {0}'.format(url))
         except Exception as e:
             print('Something fucked up, mate: {0}'.format(e))
 

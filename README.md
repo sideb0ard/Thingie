@@ -6,7 +6,7 @@ virtualenv --python=pypy venv
 
 source venv/bin/activate
 
-pip install crossbar
+pip install -r requirements.txt
 
 crossbar start
 

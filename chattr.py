@@ -29,13 +29,7 @@ class Chat(ApplicationSession):
             print reply
 
 
-def startWAMP():
-    runner = ApplicationRunner(url=u'ws://localhost:8080/ws',
-                               realm=u'thingie')
-    runner.run(Chat)
-
-
-class chatbot(SocketServer.BaseRequestHandler):
+class Chatbot(SocketServer.BaseRequestHandler):
 
     def handle(self):
 
@@ -49,8 +43,14 @@ class chatbot(SocketServer.BaseRequestHandler):
         self.request.close()
 
 
+def startWAMP():
+    runner = ApplicationRunner(url=u'ws://localhost:8080/ws',
+                               realm=u'thingie')
+    runner.run(Chat)
+
+
 def start_tcp():
-    t = ThreadedTCPServer((listenaddr, listenport), chatbot)
+    t = ThreadedTCPServer((listenaddr, listenport), Chatbot)
     print 'Hit me up, bra .. {0}:{1}'.format(listenaddr, listenport)
     t.serve_forever()
 

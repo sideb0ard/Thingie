@@ -20,17 +20,6 @@ class Brainie(ApplicationSession):
         except Exception as e:
             print('Something fucked up, mate: {0}'.format(e))
 
-# def main():
-#
-#    # enter event loop, receive notifications of events
-#    # philosohize on them
-#    # try different combinations of things and relationships
-#    thing1 = Thing()
-#    thing2 = Thing()
-#    ev = Event([thing1, thing2])
-#    print ev.replay()
-#    print ev.getThings()
-
 
 if __name__ == '__main__':
     print 'Bzzzt.. I\'m alive!'
